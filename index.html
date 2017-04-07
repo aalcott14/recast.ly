@@ -8,7 +8,6 @@
   <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
   <link rel="stylesheet" href="styles/style.css">
   
-  <script src="https://apis.google.com/js/api.js"></script>
   <script src="node_modules/jquery/dist/jquery.js"></script>
   <script src="node_modules/react/dist/react.js"></script>
   <script src="node_modules/react-dom/dist/react-dom.js"></script>
@@ -17,6 +16,8 @@
 <body>
   <div id="app"></div>
   <script src="src/data/exampleVideoData.js"></script>
+  <script src="src/config/youtube.js"></script>
+  <script src="src/lib/searchYouTube.js"></script>
   <script src="compiled/src/components/VideoListEntry.js"></script>
   <script src="compiled/src/components/VideoList.js"></script>
   <script src="compiled/src/components/VideoPlayer.js"></script>
@@ -24,7 +25,6 @@
   <script src="compiled/src/components/Search.js"></script>
   <script src="compiled/src/components/App.js"></script>
   <script src="compiled/src/index.js"></script>
-  <script src="src/config/youtube.js"></script>
-  <script src="src/lib/searchYouTube.js"></script>
+  <script>searchYouTube()</script>
 </body>
 </html>
