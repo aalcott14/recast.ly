@@ -3,18 +3,19 @@ class App extends React.Component {
     super(props);
     this.searchYouTube = props.searchYouTube;
 
-    this.useQueryResults = function(data) {
-      this.setState({
-        currentVideo: data.items.length > 0 ? data.items[0] : '',
-        videoList: data.items
-      });
-    };
-    props.searchYouTube(undefined, this.useQueryResults.bind(this));
-
+    props.searchYouTube({query: 'test', key: YOUTUBE_API_KEY, max: 5}, this.useQueryResults.bind(this));
+    console.log('PINGA2')
     this.state = {
       currentVideo: exampleVideoData[0], 
       videoList: exampleVideoData
     };
+  }
+
+  useQueryResults(data) {
+    this.setState({
+      currentVideo: data.items.length > 0 ? data.items[0] : '',
+      videoList: data.items
+    });
   }
 
   getSearchResults(queryText) {
@@ -39,12 +40,19 @@ class App extends React.Component {
   render() {
     return (<div>
       <Nav clickHandler={this.getSearchResults.bind(this)}/>
-      <div className="col-md-7">
-        <VideoPlayer video={this.state.currentVideo}/>
-      </div>
-      <div className="col-md-5">
-        <VideoList videos={this.state.videoList} selectVideo={this.selectVideo.bind(this)}/>
-      </div>
+      { (this && this.state && this.state.currentVideo)?
+        <div className="col-md-7"> 
+          <VideoPlayer video={this.state.currentVideo}/>
+        </div>
+        :<div></div>
+      }
+      {
+        (this && this.state && this.state.videoList) ?
+        <div className="col-md-5">
+          <VideoList videos={this.state.videoList} selectVideo={this.selectVideo.bind(this)}/>
+        </div>
+        :<div></div>
+      }
     </div>);
   }
 }
